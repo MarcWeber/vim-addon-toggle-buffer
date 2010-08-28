@@ -9,8 +9,8 @@ let s:l['ocaml_mli'] = funcref#Function('return vim_addon_toggle#Substitute('.st
 
 let s:l['vim_alternates'] = funcref#Function('vim_addon_toggle#VimAlternates')
 
-noremap \t :call vim_addon_toggle#Toggle("narrow")<cr>
-noremap \T :call vim_addon_toggle#Toggle("all")<cr>
+noremap \tg :call vim_addon_toggle#Toggle("narrow")<cr>
+noremap \TG :call vim_addon_toggle#Toggle("all")<cr>
 " narrow: presents a small list (more likely)
 " all:    try to find all files you could be interested in.
  

@@ -8,7 +8,7 @@ fun! vim_addon_toggle#Substitute(from, to)
     for replace in split(a:to, ',')
       let r = substitute(f, pat.'$', replace, 'g')
       if r != f
-        call add(L,string(r))
+        call add(l,string(r))
       endif
     endfor
   endfor
@@ -16,8 +16,9 @@ fun! vim_addon_toggle#Substitute(from, to)
 endf
 
 fun! vim_addon_toggle#VimAlternates(mode)
-  let l = []
+  if expand('%:e') != 'vim' | return [] | endif
 
+  let l = []
   " TODO implement mode = all
   " assume you're editing a */.vim file
   for f in split(glob(expand('%:h:h').'/*/*.vim'),"\n")
