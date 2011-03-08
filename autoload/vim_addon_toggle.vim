@@ -1,4 +1,4 @@
-exec scriptmanager#DefineAndBind('s:l','g:vim_addon_toggle_buffer','{}')
+exec vam#DefineAndBind('s:l','g:vim_addon_toggle_buffer','{}')
 
 " Example: see plugin/vim-addon-toggle.vim
 fun! vim_addon_toggle#Substitute(from, to)
