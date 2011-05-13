@@ -29,23 +29,41 @@ fun! vim_addon_toggle#VimAlternates(mode)
   return l
 endf
 
+fun! s:GotoFile(s)
+  try
+    exec 'b '.fnameescape(a:s)
+  catch /.*/
+    exec 'e '.fnameescape(a:s)
+  endtry
+endfun
+
 " evaluates all functions in g:vim_addon_toogle
 " asks user to which file to jump to
 fun! vim_addon_toggle#Toggle(mode)
   let alternates = {}
 
+  " store cursor pos
+  let p = getpos('.')
+
   for F in values(s:l)
+
     for a in funcref#Call(F, [a:mode])
       if has_key(alternates, a) | continue | endif
       let alternates[a] = 1
     endfor
+
+    " reset cursor pos
+    call setpos('.', p)
   endfor
   let l = keys(alternates)
   if empty(l) | return  | endif
   let to = eval(tlib#input#List("s","select local name", l))
   if type(to) == type('')
-    exec 'e '.fnameescape(to)
+    s:GotoFile(to)
+  elseif type(to) == type({}) && has_key(to,'file') && has_key(to,'line')
+    call s:GotoFile(to.file)
+    exec to.line
   else
-    " TODO: eg allow jumping to a line or such. Useful for .c <-> .h or .ml <-> .mli
+    throw "unexpected"
   endif
 endf

@@ -13,8 +13,8 @@
   A mode is passed to the function, so that you can change its behaviour from
   "return most likely matches only" to "return all possible matches"
 
-  The functions are expected to return string(filename).
-  Maybe returning file locations is allowed as well in the future.
+  The functions are expected to return string(filename) or string({'file': file, 'line': line})
+
 
   Each function is added to a dict so that no duplicates occur and so that you
   can update entries easily
