@@ -1,12 +1,14 @@
 exec vam#DefineAndBind('s:l','g:vim_addon_toggle_buffer','{}')
 
 " Example: see plugin/vim-addon-toggle.vim
-fun! vim_addon_toggle#Substitute(from, to)
+fun! vim_addon_toggle#Substitute(from, to, ...)
+  " surround pattern by:
+  let p = a:0 > 0 ? a:1 : ['','$']
   let l = []
   let f = expand('%')
   for pat in split(a:from, ',')
     for replace in split(a:to, ',')
-      let r = substitute(f, pat.'$', replace, 'g')
+      let r = substitute(f, p[0].pat.p[1], replace, 'g')
       if r != f
         call add(l,string(r))
       endif
@@ -59,7 +61,7 @@ fun! vim_addon_toggle#Toggle(mode)
   if empty(l) | return  | endif
   let to = eval(tlib#input#List("s","select local name", l))
   if type(to) == type('')
-    s:GotoFile(to)
+    call s:GotoFile(to)
   elseif type(to) == type({}) && has_key(to,'file') && has_key(to,'line')
     call s:GotoFile(to.file)
     exec to.line
