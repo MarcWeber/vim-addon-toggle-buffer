@@ -5,16 +5,24 @@ fun! vim_addon_toggle#Substitute(from, to, ...)
   " surround pattern by:
   let p = a:0 > 0 ? a:1 : ['','$']
   let l = []
+  let existing = []
   let f = expand('%')
   for pat in split(a:from, ',')
     for replace in split(a:to, ',')
       let r = substitute(f, p[0].pat.p[1], replace, 'g')
       if r != f
         call add(l,string(r))
+        if filereadable(r)
+          call add(existing,string(r))
+        endif
       endif
     endfor
   endfor
-  return l
+  if len(existing) > 0
+    return existing
+  else
+    return l
+  endif
 endf
 
 fun! vim_addon_toggle#VimAlternates(mode)
