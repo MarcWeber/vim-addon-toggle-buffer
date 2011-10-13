@@ -1,4 +1,5 @@
-exec vam#DefineAndBind('s:l','g:vim_addon_toggle_buffer','{}')
+" vam#DefineAndBind('s:l','g:vim_addon_toggle_buffer','{}')
+if !exists('g:vim_addon_toggle_buffer') | let g:vim_addon_toggle_buffer = {} | endif | let s:l = g:vim_addon_toggle_buffer
 
 " Example: see plugin/vim-addon-toggle.vim
 fun! vim_addon_toggle#Substitute(from, to, ...)

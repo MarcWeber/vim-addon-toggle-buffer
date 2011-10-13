@@ -21,4 +21,4 @@
 
 
 == notes ==
-  depends on vim-addon-manager because of DefineAndBind()
+  I recommend vim-addon-manager for installing plugins
