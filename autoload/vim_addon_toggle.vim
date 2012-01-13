@@ -42,7 +42,7 @@ endf
 
 fun! s:GotoFile(s)
   try
-    exec 'b '.fnameescape(a:s)
+    exec 'b '.fnameescape(a:s).'$'
   catch /.*/
     exec 'e '.fnameescape(a:s)
   endtry
