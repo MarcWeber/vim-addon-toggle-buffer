@@ -1,7 +1,7 @@
 " exec vam#DefineAndBind('s:l','g:vim_addon_toggle_buffer','{}')
 if !exists('g:vim_addon_toggle_buffer') | let g:vim_addon_toggle_buffer = {} | endif | let s:l = g:vim_addon_toggle_buffer
 
-let s:l['cpp_impl'] = funcref#Function('return vim_addon_toggle#Substitute('.string('\.cpp,\.c,\.cc,\.cxx').','.string('.h,.hh').')')
+let s:l['cpp_impl'] = funcref#Function('return vim_addon_toggle#Substitute('.string('\.cpp,\.c,\.cc,\.cxx,\.m').','.string('.h,.hh').')')
 let s:l['cpp_headers'] = funcref#Function('return vim_addon_toggle#Substitute('.string('\.h,\.hh').','.string('.cpp,.c,.cc,.cxx').')')
 
 let s:l['js_to_coffe'] = funcref#Function('return vim_addon_toggle#Substitute('.string('\.js').','.string('.coffe,.iced,.html').')')
